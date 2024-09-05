@@ -1,8 +1,16 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
 
 namespace InventoryManagementSystem.Models
 {
-    public class AppUser : IdentityUser
+    public abstract class AppUser : IdentityUser
     {
+        
+        public string FullName { get; set; }
+
+        public string CompanyName { get; set; }
+
+        public string Address { get; set; }
+        
     }
 }

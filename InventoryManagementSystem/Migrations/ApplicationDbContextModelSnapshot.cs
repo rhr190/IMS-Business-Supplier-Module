@@ -30,6 +30,14 @@ namespace InventoryManagementSystem.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -40,6 +48,10 @@ namespace InventoryManagementSystem.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -85,76 +97,8 @@ namespace InventoryManagementSystem.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
 
-            modelBuilder.Entity("InventoryManagementSystem.Models.InventoryManager", b =>
-                {
-                    b.Property<int>("ManagerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ManagerId"));
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CompanyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ManagerId");
-
-                    b.ToTable("Managers");
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("InventoryManagementSystem.Models.Product", b =>
@@ -186,84 +130,6 @@ namespace InventoryManagementSystem.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("InventoryManagementSystem.Models.ProductSupplier", b =>
-                {
-                    b.Property<int>("SupplierId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupplierId"));
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("MailAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SupplierId");
-
-                    b.ToTable("Suppliers");
-                });
-
             modelBuilder.Entity("InventoryManagementSystem.Models.RequestSKUs", b =>
                 {
                     b.Property<int>("RequestSKUId")
@@ -275,8 +141,8 @@ namespace InventoryManagementSystem.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ManagerId")
-                        .HasColumnType("int");
+                    b.Property<string>("InventoryManagerId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -293,6 +159,8 @@ namespace InventoryManagementSystem.Migrations
 
                     b.HasKey("RequestSKUId");
 
+                    b.HasIndex("InventoryManagerId");
+
                     b.ToTable("RequestSKUs");
                 });
 
@@ -307,10 +175,11 @@ namespace InventoryManagementSystem.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductQuantity")
-                        .HasColumnType("int");
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SKUQuantity")
+                    b.Property<int>("ProductQuantity")
                         .HasColumnType("int");
 
                     b.Property<int>("SupplierId")
@@ -342,6 +211,9 @@ namespace InventoryManagementSystem.Migrations
                     b.Property<int>("ProductPrice")
                         .HasColumnType("int");
 
+                    b.Property<string>("ProductSupplierId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("RequestDate")
                         .HasColumnType("datetime2");
 
@@ -354,13 +226,12 @@ namespace InventoryManagementSystem.Migrations
                     b.Property<int>("SKUQuantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
                     b.HasKey("SuppliedSKUId");
+
+                    b.HasIndex("ProductSupplierId");
 
                     b.ToTable("SuppliedSKUs");
                 });
@@ -390,6 +261,20 @@ namespace InventoryManagementSystem.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "523d5433-49e1-4326-a5a2-225cb6f56530",
+                            Name = "Supplier",
+                            NormalizedName = "SUPPLIER"
+                        },
+                        new
+                        {
+                            Id = "843c3bff-1c95-44cb-840f-b2c63f7149ca",
+                            Name = "Manager",
+                            NormalizedName = "MANAGER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -498,6 +383,34 @@ namespace InventoryManagementSystem.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("InventoryManagementSystem.Models.InventoryManager", b =>
+                {
+                    b.HasBaseType("InventoryManagementSystem.Models.AppUser");
+
+                    b.ToTable("InventoryManagers");
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.ProductSupplier", b =>
+                {
+                    b.HasBaseType("InventoryManagementSystem.Models.AppUser");
+
+                    b.ToTable("ProductSuppliers");
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.RequestSKUs", b =>
+                {
+                    b.HasOne("InventoryManagementSystem.Models.InventoryManager", null)
+                        .WithMany("RequestSKUs")
+                        .HasForeignKey("InventoryManagerId");
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.SuppliedSKUs", b =>
+                {
+                    b.HasOne("InventoryManagementSystem.Models.ProductSupplier", null)
+                        .WithMany("SuppliedSKUs")
+                        .HasForeignKey("ProductSupplierId");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -547,6 +460,34 @@ namespace InventoryManagementSystem.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.InventoryManager", b =>
+                {
+                    b.HasOne("InventoryManagementSystem.Models.AppUser", null)
+                        .WithOne()
+                        .HasForeignKey("InventoryManagementSystem.Models.InventoryManager", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.ProductSupplier", b =>
+                {
+                    b.HasOne("InventoryManagementSystem.Models.AppUser", null)
+                        .WithOne()
+                        .HasForeignKey("InventoryManagementSystem.Models.ProductSupplier", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.InventoryManager", b =>
+                {
+                    b.Navigation("RequestSKUs");
+                });
+
+            modelBuilder.Entity("InventoryManagementSystem.Models.ProductSupplier", b =>
+                {
+                    b.Navigation("SuppliedSKUs");
                 });
 #pragma warning restore 612, 618
         }

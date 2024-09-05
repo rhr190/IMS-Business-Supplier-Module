@@ -6,7 +6,6 @@ namespace InventoryManagementSystem.Models
     {
         [Key]
         public int RequestSKUId { get; set; }
-        public int ManagerId { get; set; }
         public int CategoryId { get; set; }
         public int ProductId { get; set; }
         
