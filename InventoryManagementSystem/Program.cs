@@ -1,5 +1,6 @@
 using InventoryManagementSystem.Entities;
 using InventoryManagementSystem.Models;
+using InventoryManagementSystem.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 
@@ -73,8 +75,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.MapControllerRoute(
-    name: "registration",
-    pattern: "{controller=Account}/{action=Register}");
+//app.MapControllerRoute(
+//    name: "registration",
+//    pattern: "{controller=Account}/{action=Register}");
 
 app.Run();

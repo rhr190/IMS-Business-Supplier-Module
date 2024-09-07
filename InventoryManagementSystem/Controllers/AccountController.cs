@@ -27,7 +27,7 @@ namespace InventoryManagementSystem.Controllers
             if(!ModelState.IsValid || model.Role == null) return View(model);
             if(model.Role == "Manager") 
             {
-                var user = new InventoryManager { FullName = model.FullName, UserName = model.UserName, CompanyName = model.CompanyName, Address = model.Address, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var user = new InventoryManager { FullName = model.FullName, UserName = model.UserName, CompanyName = model.CompanyName, Address = model.Address, Email = model.Email, PhoneNumber = model.PhoneNumber, Role = model.Role };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded)
                 {
@@ -41,7 +41,7 @@ namespace InventoryManagementSystem.Controllers
             }
             if(model.Role == "Supplier")
             {
-                var user = new ProductSupplier { FullName = model.FullName, UserName = model.UserName, CompanyName = model.CompanyName, Address = model.Address, Email = model.Email, PhoneNumber = model.PhoneNumber };
+                var user = new ProductSupplier { FullName = model.FullName, UserName = model.UserName, CompanyName = model.CompanyName, Address = model.Address, Email = model.Email, PhoneNumber = model.PhoneNumber, Role = model.Role };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if(result.Succeeded)
                 {
@@ -57,5 +57,9 @@ namespace InventoryManagementSystem.Controllers
             return View(model);
         }
         
+        public IActionResult Login()
+        {
+            return View();
+        }
     }
 }
