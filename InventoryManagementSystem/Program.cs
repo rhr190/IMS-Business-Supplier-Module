@@ -35,15 +35,15 @@ builder.Services.AddAuthentication(options =>
     options.DefaultSignOutScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer( options =>
 {
-    var issuers = builder.Configuration["JWT:Issuers"].Split(';');
-    var audiences = builder.Configuration["JWT:Audiences"].Split(';');
+    var issuer = builder.Configuration["JWT:Issuer"];
+    var audience = builder.Configuration["JWT:Audience"];
     options.TokenValidationParameters = new TokenValidationParameters
     {
         
         ValidateIssuer = true,
-        ValidIssuers = issuers,
+        ValidIssuer = issuer,
         ValidateAudience = true,
-        ValidAudiences = audiences,
+        ValidAudience = audience,
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(
             System.Text.Encoding.UTF8.GetBytes(builder.Configuration["JWT:SigningKey"])

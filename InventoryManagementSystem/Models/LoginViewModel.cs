@@ -5,7 +5,6 @@ namespace InventoryManagementSystem.Models
     public class LoginViewModel
     {
         [Required(ErrorMessage = "Username is required")]
-        [EmailAddress]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Password is required")]

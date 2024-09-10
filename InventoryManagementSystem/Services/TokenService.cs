@@ -1,4 +1,5 @@
-﻿using InventoryManagementSystem.Models;
+﻿using Azure;
+using InventoryManagementSystem.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -30,10 +31,10 @@ namespace InventoryManagementSystem.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddDays(1),
+                Expires = DateTime.Now.AddMinutes(2),
                 SigningCredentials = creds,
-                Issuer = _config["JWT:Issuers"].Split(';')[0],
-                Audience = _config["JWT:Audinces"].Split(';')[0],
+                Issuer = _config["JWT:Issuer"],
+                Audience = _config["JWT:Audience"],
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -41,5 +42,7 @@ namespace InventoryManagementSystem.Services
 
             return tokenHandler.WriteToken(token);
         }
+
+  
     }
 }
